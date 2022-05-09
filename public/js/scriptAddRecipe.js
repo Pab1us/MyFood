@@ -6,14 +6,9 @@ function btnCreateJson() {
     let inputIngredients = document.querySelectorAll(".inputIngredients");
     let btnCreate = document.querySelector(".btnCreate");
     let inputQuantity = document.querySelectorAll(".inputQuantity");
-    let test = document.querySelector(".test");
-    let inputUrl = document.querySelector(".inputUrl");
     let imgUrl;
 
-    test.innerHTML = inputUrl.value;
-    if(document.querySelector(".test").childNodes[0]) {
-        imgUrl = document.querySelector(".test").childNodes[0].childNodes[0].src;
-    }
+
     let requestGET = httpGet('/recipes');
 
     function httpGet(theUrl) {

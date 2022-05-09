@@ -1,5 +1,5 @@
 // Запрос данных
-let request = httpGet('https://62489c3d20197bb4626b408f.mockapi.io/api/v1/Recipes');
+let request = httpGet('/recipes');
 
 function httpGet(theUrl)
 {

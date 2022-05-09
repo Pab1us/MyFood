@@ -87,6 +87,23 @@ app.post('/recipes', function(req, res) {
     });
 });
 
+app.post('/favoritesDelete', function(req, res) {
+    const title = req.body.title;
+    const sql = "DELETE FROM `favorites` WHERE title=?";
+    const data = [title];
+    connection.query(sql, data, function(error, results) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(500);
+            return;
+        }
+        else {
+            console.log(data);
+            res.send(results);
+        }
+    });
+});
+
 app.get('/users', (request, response) => {
     connection.query('SELECT * FROM users', (error, result) => {
         if (error) throw error;

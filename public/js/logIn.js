@@ -5,7 +5,7 @@ function btnLogin() {
     let username = document.querySelector(".usernameField");
     let password = document.querySelector(".passwordField");
     let btnCreate = document.querySelector(".btnCreate");
-    let keyNewUser = true;
+    let success = false;
 
     let request = httpGet('/users');
 
@@ -30,11 +30,12 @@ function btnLogin() {
             document.querySelector(".modalWindow").style.display = "block";
             document.querySelector(".alertText").textContent = "Здраствуйте " + data[i].name + "!" + " Вход выполнен!";
             usernameGlobal = data[i].username;
+            success = true;
 
         }
-        else if(i === data.length - 1) {
-            alert("Неверно указаны данные для входа");
-        }
+    }
+    if(!success){
+        alert("Неверно указаны данные для входа");
     }
 
 }

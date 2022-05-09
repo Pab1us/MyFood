@@ -1,11 +1,13 @@
 
 // Запрос данных
-let data;
-let dataUser;
+let data,
+    dataUser,
+    dataFavorites;
 
 function createRequest() {
     let request = httpGet('/recipes');
     let requestUser = httpGet('/users');
+    let requestFavorites = httpGet('/favorites');
 
     function httpGet(theUrl) {
         let xmlHttp = new XMLHttpRequest();
@@ -17,6 +19,7 @@ function createRequest() {
 // Здесь наши данные
     data = JSON.parse(request);
     dataUser = JSON.parse(requestUser);
+    dataFavorites = JSON.parse(requestFavorites);
 }
 createRequest();
 
@@ -81,89 +84,31 @@ function goLinkRecipe() {
 function addFavorite() {
     let idRecipe = this.event.target.parentNode.parentNode.querySelectorAll('.id_recipe')[0].textContent;
     let titleRecipe = this.event.target.parentNode.parentNode.parentNode.querySelectorAll('.titleRecipe')[0].textContent;
-    let newId;
+    let id_user;
 
     for (let i = 0; i < dataUser.length; i++) {
         if (dataUser[i].username === localStorage.getItem('username')) {
-            if (dataUser[i].favorites) {
-                newId = dataUser[i].favorites.length + 1;
-            }
+            id_user = dataUser[i].id_user;
+            break;
         }
     }
 
-    // let newFavorite = {
-    //     "id": idRecipe,
-    //     "title": titleRecipe
-    // }
     let newFavorite = {
-        "id": 0,
-        "title": "Масло",
-        "id_user": 2
+        "id": idRecipe,
+        "title": titleRecipe,
+        "id_user": id_user
     }
-
-    for (let i = 0; i < dataUser.length; i++) {
-        if (dataUser[i].username === localStorage.getItem('username')) {
-            if (dataUser[i].favorites) {
-                dataUser[i].favorites.push(newFavorite);
-            }
-            console.log(dataUser[i].favorites);
-        }
-    }
-
-    const data = JSON.stringify(newFavorite);
+    // if( !dataFavorites.includes(newFavorite))
+    // {
+        const data = JSON.stringify(newFavorite);
         let requestUserData = '/favorites';
-
 
         const xhrP = new XMLHttpRequest();
         xhrP.open("POST", requestUserData);
         xhrP.setRequestHeader("Content-Type", "application/json");
 
         xhrP.send(data);
+   // }
 
-    // for (let i = dataUser.length; i > 0; i--) {
-    //     let requestUserDataClear = 'https://62489c3d20197bb4626b408f.mockapi.io/api/v1/usersData/' + (dataUser[i-1].id);
-    //     const xhrD = new XMLHttpRequest();
-    //
-    //     xhrD.open("DELETE", requestUserDataClear);
-    //     xhrD.setRequestHeader("Content-Type", "application/json");
-    //
-    //     xhrD.send(dataUser[i]);
-    //     //xhrD.abort();
-    // }
-    //
-    //
-    // for (let i = 0; i < dataUser.length; i++) {
-    //     let json;
-    //     if (dataUser[i].favorites.length !== 0) {
-    //         json = {
-    //             name: dataUser[i].name,
-    //             username: dataUser[i].username,
-    //             lastName: dataUser[i].lastName,
-    //             email: dataUser[i].email,
-    //             password: dataUser[i].password,
-    //             id: dataUser[i].id,
-    //             favorites: dataUser[i].favorites,
-    //         };
-    //     } else {
-    //         json = {
-    //             name: dataUser[i].name,
-    //             username: dataUser[i].username,
-    //             lastName: dataUser[i].lastName,
-    //             email: dataUser[i].email,
-    //             password: dataUser[i].password,
-    //             id: dataUser[i].id,
-    //             favorites: dataUser[i].favorites,
-    //         };
-    //     }
-    //
-    //     const data = JSON.stringify(json);
-    //     let requestUserData = 'https://62489c3d20197bb4626b408f.mockapi.io/api/v1/usersData';
-    //
-    //
-    //     const xhrP = new XMLHttpRequest();
-    //     xhrP.open("POST", requestUserData);
-    //     xhrP.setRequestHeader("Content-Type", "application/json");
-    //
-    //     xhrP.send(data);
-    //}
+
 }
