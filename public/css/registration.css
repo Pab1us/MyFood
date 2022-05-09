@@ -1,0 +1,339 @@
+.main {
+    width: 100%;
+    position: relative;
+    background: #ffffff center repeat-y;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+
+.logo {
+    width: fit-content;
+    margin: 0 auto;
+}
+.btnRegistration {
+    padding: 12px 24px;
+    top: 20px;
+    background: #4A61DD;
+    border-radius: 6px;
+    color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0 8px;
+    text-decoration: none;
+}
+.btnEnter{
+    font-family: 'Montserrat' ;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #000000;
+    text-decoration: none;
+    margin-right: 20px;
+}
+.authorization_block{
+    display: flex;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+}
+.container {
+    width: 100%;
+
+}
+.top_Block {
+    display: flex;
+    justify-content: space-between;
+}
+.mainText {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 49px;
+    margin: 40px auto 0 auto;
+}
+.createForm {
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    box-sizing: border-box;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+    margin: 40px auto;
+    max-width: 770px;
+    width: 100%;
+    height: auto;
+}
+#name, #username, #lastName, #email, #password {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    margin-left: 70px;
+    margin-right: 70px;
+}
+.selectTag {
+    margin-left: 150px;
+    width: 125px;
+    height: 30px;
+    border-radius: 4px;
+    text-align: center;
+}
+.nameText {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 32px;
+    color: #000000;
+}
+#nameField, #usernameField, #lastNameField, #emailField, #passwordField {
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    box-sizing: border-box;
+    border-radius: 6px;
+    margin-left: 60px;
+    font-family: Montserrat sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    max-width: 370px;
+    width: 100%;
+    height: 42px;
+    padding-left: 12px;
+    line-height: 20px;
+    color: #000000;
+}
+.btnAddIngredient {
+    border: 0;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    margin: 20px auto;
+}
+.btnAddIngredient:hover {
+    background-color: #DEDEDE;
+}
+.btnLoad {
+    margin-left: 73px;
+    padding: 12px 24px;
+    background: #DEDEDE;
+    border-radius: 6px;
+    border: 0;
+}
+.btnCreate {
+    padding: 12px 24px;
+    background: #4A61DD;
+    border-radius: 6px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    display: flex;
+    color: #FFFFFF;
+    border: none;
+    margin: 30px auto;
+    cursor: pointer;
+}
+.btnCreate:hover {
+    background: #2845DF;
+}
+
+.modalWindow {
+    display: none;
+    position: fixed;
+    overflow: auto;
+    min-width: 200px;
+    width: 100%;
+    max-width: 600px;
+    height: 230px;
+    top: 200px;
+    left: 33%;
+    vertical-align: middle;
+    z-index: 100;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+
+.alertText {
+    font-size: 35px;
+    padding: 40px;
+    text-align: center;
+}
+
+.btnBlock {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.btnGoLogIn {
+    width: 130px;
+    height: 40px;
+    background: #4A61DD;
+    color: #ffffff;
+    border-radius: 6px;
+    border: 0;
+    cursor: pointer;
+}
+.btnGoLogIn:hover {
+    background: #2845DF;
+}
+
+.header {
+    width: 100%;
+    padding-top: 30px;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+.header_inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*Nav*/
+.navLogin {
+    font-size: 14px;
+    margin: 0 auto;
+    text-transform: uppercase;
+    display: none;
+}
+.navNoLogin {
+    font-size: 14px;
+    margin: 0 auto;
+    text-transform: uppercase;
+    display: block;
+}
+
+.nav_link {
+    display:inline-block;
+    vertical-align: top;
+    margin: 0 25px;
+    position: relative;
+
+    font-weight: 700;
+    color: #333;
+    text-decoration: none;
+
+    transition: color .1s linear;
+}
+
+.nav_link_active {
+    display:inline-block;
+    vertical-align: top;
+    margin: 0 25px;
+    position: relative;
+
+    font-weight: 700;
+    color: #4A61DD;
+    text-decoration: none;
+
+    transition: color .1s linear;
+}
+
+.nav_link_active:after {
+    content: "";
+    width: 100%;
+    height: 3px;
+    opacity: 1;
+
+    background-color: #4A61DD;
+
+    position: absolute;
+    top: 100%;
+    left:0;
+    z-index: 1;
+
+    transition: opacity .1s linear;
+}
+
+.nav_link:after {
+    content: "";
+    width: 100%;
+    height: 3px;
+    opacity: 0;
+
+    background-color: #4A61DD;
+
+    position: absolute;
+    top: 100%;
+    left:0;
+    z-index: 1;
+
+    transition: opacity .1s linear;
+}
+
+.nav_link:hover {
+    color: #000;
+}
+
+.nav_link:hover:after {
+    opacity: 1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.containerTop_mobile {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+.contentMenu_mobile {
+    border: 1px solid #EEEEEE;
+    box-sizing: border-box;
+    border-radius: 8px;
+    width: fit-content;
+    padding: 20px;
+    display: none;
+    background: #fff;
+}
+.menuItem_mobile {
+    display: block;
+    font-size: 24px;
+    text-decoration: none;
+    color: #000;
+    padding: 10px;
+}
+
+.bottomPanel {
+    width: 100%;
+    background-color: #000000;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.textBottom {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #ffffff;
+    width: fit-content;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}

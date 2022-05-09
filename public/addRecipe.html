@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+  <link rel="stylesheet" href="css/addRecipe.css">
+  <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@700&display=swap" rel="stylesheet">
+  <script async src="https://imgbb.com/upload.js" data-sibling="p" data-auto-insert="html-embed-medium"></script>
+  <title>MyFood</title>
+</head>
+<body>
+<div class="main">
+  <div class="logo"><img style="width: 250px;" src="images/logo.png"/></div>
+  <div class="authorization">
+    <div class="authorization_block">
+      <a href="loginForm.html" class="btnEnter">Войти</a>
+      <a href="registrationForm.html" class="btnRegistration">Создать аккаунт</a>
+    </div>
+    <div class="logIn_block">
+      <div class="loginUser"></div>
+      <a onclick="logOut()" href="index.html" class="btnRegistration">Выйти</a>
+    </div>
+  </div>
+  <div class="container">
+    <header class="header">
+      <div class="containerTop">
+        <div class="header_inner">
+          <nav class="navLogin">
+            <a class="nav_link" href="index.html">Рецепты</a>
+            <a class="nav_link_active" href="addRecipe.html">Добавить рецепт</a>
+            <a class="nav_link" href="searchRecipe.html">Поиск по ингредиентам</a>
+            <a class="nav_link" href="">Рецепты на неделю</a>
+            <a class="nav_link" href="myRecipe.html">Мои рецепты</a>
+          </nav>
+          <nav class="navNoLogin">
+            <a class="nav_link" href="index.html">Рецепты</a>
+            <a class="nav_link_active" href="searchRecipe.html">Поиск по ингредиентам</a>
+            <a class="nav_link" href="">Рецепты на неделю</a>
+
+          </nav>
+        </div>
+      </div>
+      <div class="containerTop_mobile">
+        <nav>
+          <img src="images/icons/i.jpg" onclick="onClickMenu_mobile()" style="width: 30px;"/>
+          <div class="contentMenu_mobile">
+            <div class="navLogin_mobile">
+              <a class="menuItem_mobile" href="index.html">Рецепты</a>
+              <a class="menuItem_mobile" href="addRecipe.html">Добавить рецепт</a>
+              <a class="menuItem_mobile" href="searchRecipe.html">Поиск по ингредиентам</a>
+              <a class="menuItem_mobile" href="#">Рецепты на неделю</a>
+              <a class="menuItem_mobile" href="myRecipe.html">Мои рецепты</a>
+              <a class="menuItem_mobile" onclick="logOut()" href="index.html">Выйти из аккаунта</a>
+            </div>
+            <div class="navNoLogin_mobile">
+              <a class="menuItem_mobile" href="index.html">Рецепты</a>
+              <a class="menuItem_mobile" href="searchRecipe.html">Поиск по ингредиентам</a>
+              <a class="menuItem_mobile" href="#">Рецепты на неделю</a>
+              <a class="menuItem_mobile" href="loginForm.html">Войти в аккаунт</a>
+              <a class="menuItem_mobile" href="registrationForm.html">Создать аккаунт</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <div class="top_Block">
+      <div class="mainText">Создание рецепта</div>
+    </div>
+    <div class="createForm">
+        <div id="nameRecipe" class="inputField">
+          <div class="nameText">Название рецепта</div>
+          <input type="text" class="inputTitle" required/>
+        </div>
+      <div id="tags" class="inputField">
+        <div class="nameText">Теги</div>
+        <select size="1" class="selectTag">
+          <option>Выберите тег</option>
+          <option>Завтрак</option>
+          <option>Обед</option>
+          <option>Ужин</option>
+        </select>
+      </div>
+      <div id="time" class="inputField">
+        <div class="nameText">Время приготовления</div>
+        <input type="number" class="inputTime" required/>
+        <div class="nameText" style="margin-left: 20px;">минут</div>
+      </div>
+      <div id="text" class="inputField">
+        <div class="nameText">Описание</div>
+        <textarea class="inputText" name="search"></textarea>
+      </div>
+      <form action="/upload" method="post" enctype="multipart/form-data" style="margin-top: 30px; margin-left: 250px!important;">
+        <input type="file" name="filedata" />
+        <input type="submit" value="Загрузить" formtarget="_blank" />
+      </form>
+      <div class="container_ingredients">
+        <div id="ingredients" class="inputField">
+          <div class="nameText">Ингредиенты</div>
+          <input type="text" class="inputIngredients" required/>
+          <input type="text" style="width: 40px;" class="inputQuantity" required/>
+          <div style="margin-left: 20px;" class="nameText">шт</div>
+        </div>
+      </div>
+      <button onclick="addIngredient()" class="btnAddIngredient">Добавить ингредиент</button>
+      <button class="btnCreate" onclick="btnCreateJson()">Создать рецепт</button>
+    </div>
+  </div>
+</div>
+<textarea style="display: none" class="inputUrl"></textarea>
+<div class="test" style="display: none"></div>
+<div class="bottomPanel">
+  <div class="textBottom">Найди и приготовь свой любимый рецепт с сервисом MyFood!</div>
+</div>
+<script src="js/scriptAddRecipe.js"></script>
+<script src="js/checkLoginUser.js"></script>
+<script src="js/menuScript.js"></script>
+</body>
+</html>

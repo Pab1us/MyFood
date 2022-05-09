@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+  <link rel="stylesheet" href="css/searchRecipe.css">
+  <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@700&display=swap" rel="stylesheet">
+  <title>MyFood</title>
+</head>
+<body>
+<div class="main">
+  <div class="logo"><img style="width: 250px;" src="images/logo.png"/></div>
+  <div class="authorization">
+    <div class="authorization_block">
+      <a href="loginForm.html" class="btnEnter">Войти</a>
+      <a href="registrationForm.html" class="btnRegistration">Создать аккаунт</a>
+    </div>
+    <div class="logIn_block">
+      <div class="loginUser"></div>
+      <a onclick="logOut()" href="index.html" class="btnRegistration">Выйти</a>
+    </div>
+  </div>
+  <div class="container">
+    <header class="header">
+      <div class="containerTop">
+        <div class="header_inner">
+          <nav class="navLogin">
+            <a class="nav_link" href="index.html">Рецепты</a>
+            <a class="nav_link" href="addRecipe.html">Добавить рецепт</a>
+            <a class="nav_link" href="searchRecipe.html">Поиск по ингредиентам</a>
+            <a class="nav_link" href="">Рецепты на неделю</a>
+            <a class="nav_link_active" href="myRecipe.html">Мои рецепты</a>
+          </nav>
+          <nav class="navNoLogin">
+            <a class="nav_link_active" href="index.html">Рецепты</a>
+            <a class="nav_link" href="searchRecipe.html">Поиск по ингредиентам</a>
+            <a class="nav_link" href="">Рецепты на неделю</a>
+          </nav>
+        </div>
+      </div>
+      <div class="containerTop_mobile">
+        <nav>
+          <img src="images/icons/i.jpg" onclick="onClickMenu_mobile()" style="width: 30px;"/>
+          <div class="contentMenu_mobile">
+            <div class="navLogin_mobile">
+              <a class="menuItem_mobile" href="index.html">Рецепты</a>
+              <a class="menuItem_mobile" href="addRecipe.html">Добавить рецепт</a>
+              <a class="menuItem_mobile" href="searchRecipe.html">Поиск по ингредиентам</a>
+              <a class="menuItem_mobile" href="#">Рецепты на неделю</a>
+              <a class="menuItem_mobile" href="myRecipe.html">Мои рецепты</a>
+              <a class="menuItem_mobile" onclick="logOut()" href="index.html">Выйти из аккаунта</a>
+            </div>
+            <div class="navNoLogin_mobile">
+              <a class="menuItem_mobile" href="index.html">Рецепты</a>
+              <a class="menuItem_mobile" href="searchRecipe.html">Поиск по ингредиентам</a>
+              <a class="menuItem_mobile" href="#">Рецепты на неделю</a>
+              <a class="menuItem_mobile" href="loginForm.html">Войти в аккаунт</a>
+              <a class="menuItem_mobile" href="registrationForm.html">Создать аккаунт</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <div class="top_Block">
+      <div class="mainText">Мои рецепты</div>
+    </div>
+    <div class="recipes_blocks">
+      <div style="display: none">
+        <div class="block_recipe_test">
+          <a href="infoRecipe.html" onclick="goLinkRecipe()" style="text-decoration: none;">
+            <img src="images/recipeSearch.jpg" class="imgRecipe"/>
+            <div class="titleRecipe">Французские тосты</div>
+            <div class="tag_type">Завтрак</div>
+            <div class="time_tag_block">
+              <img src="images/icons/clock_icon.png"/>
+              <span style="margin-left: 8px" class="timeRecipe">20 мин.</span>
+            </div>
+            <div class="user_name_author">
+              <img src="images/icons/user_icon.png"/>
+              <span style="margin-left: 8px" class="name_author">Вероника Чернова</span>
+            </div>
+          </a>
+          <div style="display: flex">
+            <button onclick="btnDelete()" class="cta_recipe" style="border: 0; cursor: pointer;">
+              <span style="margin-left: 8px">Убрать из избранного</span>
+            </button>
+          </div>
+
+          <span class="id_recipe" style="display: none"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modalWindow">
+    <div class="alertText">Рецепт удалён из избранного</div>
+    <div class="btnBlock">
+      <div><input class="btnGoLogIn" type="button" onclick="btnReload()" value="ок" id="btnYes" /></div>
+    </div>
+  </div>
+  <div class="bottomPanel">
+    <div class="textBottom">Найди и приготовь свой любимый рецепт с сервисом MyFood!</div>
+  </div>
+</div>
+<script src="js/myRecipeFilter.js"></script>
+<script src="js/checkLoginUser.js"></script>
+<script src="js/menuScript.js"></script>
+<script src="https://yastatic.net/share2/share.js"></script>
+</body>
+</html>

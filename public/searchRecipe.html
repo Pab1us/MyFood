@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+  <link rel="stylesheet" href="css/searchRecipe.css">
+  <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@700&display=swap" rel="stylesheet">
+  <title>MyFood</title>
+</head>
+<body>
+<div class="main">
+  <div class="logo"><img style="width: 250px;" src="images/logo.png"/></div>
+  <div class="authorization">
+    <div class="authorization_block">
+      <a href="loginForm.html" class="btnEnter">Войти</a>
+      <a href="registrationForm.html" class="btnRegistration">Создать аккаунт</a>
+    </div>
+    <div class="logIn_block">
+      <div class="loginUser"></div>
+      <a onclick="logOut()" href="index.html" class="btnRegistration">Выйти</a>
+    </div>
+  </div>
+  <div class="container">
+    <header class="header">
+      <div class="containerTop">
+        <div class="header_inner">
+          <nav class="navLogin">
+            <a class="nav_link" href="index.html">Рецепты</a>
+            <a class="nav_link" href="addRecipe.html">Добавить рецепт</a>
+            <a class="nav_link_active" href="searchRecipe.html">Поиск по ингредиентам</a>
+            <a class="nav_link" href="">Рецепты на неделю</a>
+            <a class="nav_link" href="myRecipe.html">Мои рецепты</a>
+          </nav>
+          <nav class="navNoLogin">
+            <a class="nav_link" href="index.html">Рецепты</a>
+            <a class="nav_link_active" href="searchRecipe.html">Поиск по ингредиентам</a>
+            <a class="nav_link" href="">Рецепты на неделю</a>
+          </nav>
+        </div>
+      </div>
+      <div class="containerTop_mobile">
+        <nav>
+          <img src="images/icons/i.jpg" onclick="onClickMenu_mobile()" style="width: 30px;"/>
+          <div class="contentMenu_mobile">
+            <div class="navLogin_mobile">
+              <a class="menuItem_mobile" href="index.html">Рецепты</a>
+              <a class="menuItem_mobile" href="addRecipe.html">Добавить рецепт</a>
+              <a class="menuItem_mobile" href="searchRecipe.html">Поиск по ингредиентам</a>
+              <a class="menuItem_mobile" href="#">Рецепты на неделю</a>
+              <a class="menuItem_mobile" href="myRecipe.html">Мои рецепты</a>
+              <a class="menuItem_mobile" onclick="logOut()" href="index.html">Выйти из аккаунта</a>
+            </div>
+            <div class="navNoLogin_mobile">
+              <a class="menuItem_mobile" href="index.html">Рецепты</a>
+              <a class="menuItem_mobile" href="searchRecipe.html">Поиск по ингредиентам</a>
+              <a class="menuItem_mobile" href="#">Рецепты на неделю</a>
+              <a class="menuItem_mobile" href="loginForm.html">Войти в аккаунт</a>
+              <a class="menuItem_mobile" href="registrationForm.html">Создать аккаунт</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <div class="top_Block">
+      <div class="mainText">Поиск рецепта по ингредиентам</div>
+    </div>
+    <div class="search_form">
+      <div class="search_input">
+        <input type="text" class="inputIngredients"/>
+      </div>
+      <div id="id_option_ingredients">
+        <select class="filter_ingredients" onchange="selectIngredient()">
+          <option>Выберите ингредиент</option>
+        </select>
+      </div>
+    </div>
+    <div style="margin: 20px auto; width: fit-content;">
+      <button class="btnSearch" onclick="btnSearch()">Поиск</button>
+    </div>
+    <div class="recipes_blocks">
+      <div style="display: none">
+        <a href="infoRecipe.html" onclick="goLinkRecipe()" class="block_recipe_test" style="text-decoration: none;">
+          <img src="images/recipeSearch.jpg" class="imgRecipe"/>
+          <div class="titleRecipe">Французские тосты</div>
+          <div class="tag_type">Завтрак</div>
+          <div class="time_tag_block">
+            <img src="images/icons/clock_icon.png"/>
+            <span style="margin-left: 8px" class="timeRecipe">20 мин.</span>
+          </div>
+          <div class="user_name_author">
+            <img src="images/icons/user_icon.png"/>
+            <span style="margin-left: 8px" class="name_author">Вероника Чернова</span>
+          </div>
+          <div class="cta_recipe">
+            <img src="images/icons/plus_icon.jpg"/>
+            <span style="margin-left: 8px">Добавить в покупки</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="bottomPanel">
+    <div class="textBottom">Найди и приготовь свой любимый рецепт с сервисом MyFood!</div>
+  </div>
+</div>
+<script src="js/searchRecipe.js"></script>
+<script src="js/menuScript.js"></script>
+<script src="js/checkLoginUser.js"></script>
+</body>
+</html>

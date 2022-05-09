@@ -1,0 +1,32 @@
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./assets/js/index.js":
+/*!****************************!*\
+  !*** ./assets/js/index.js ***!
+  \****************************/
+/***/ (() => {
+
+eval("// Запрос данных\nvar data;\nvar dataUser;\nconsole.log(\"asddsad\");\n\nfunction createRequest() {\n  var request = httpGet('https://62489c3d20197bb4626b408f.mockapi.io/api/v1/Recipes');\n  var requestUser = httpGet('https://62489c3d20197bb4626b408f.mockapi.io/api/v1/usersData');\n\n  function httpGet(theUrl) {\n    var xmlHttp = new XMLHttpRequest();\n    xmlHttp.open(\"GET\", theUrl, false);\n    xmlHttp.send(null);\n    return xmlHttp.responseText;\n  } // Здесь наши данные\n\n\n  data = JSON.parse(request);\n  dataUser = JSON.parse(requestUser);\n}\n\ncreateRequest();\nvar tbl = document.querySelector(\".recipes_blocks\");\nvar tab = document.querySelector(\".block_recipe_test\");\nvar titleRecipe = document.querySelector(\".titleRecipe\");\nvar tag_type = document.querySelector(\".tag_type\");\nvar timeRecipe = document.querySelector(\".timeRecipe\");\nvar name_author = document.querySelector(\".name_author\");\nvar imgRecipe = document.querySelector(\".imgRecipe\");\nvar id_recipe = document.querySelector(\".id_recipe\"); //Построение первоначальной таблицы с изначальными данными\n\nfor (var i = 0; i < data.length; i++) {\n  titleRecipe.textContent = data[i].title;\n  tag_type.textContent = data[i].tag;\n  timeRecipe.textContent = data[i].time;\n  name_author.textContent = data[i].user;\n  imgRecipe.src = data[i].imageUrl;\n  id_recipe.textContent = data[i].id;\n  createTable();\n}\n\nconsole.log(data); // Создание и заполнение ячеек\n\nfunction createTable() {\n  var div = document.createElement(\"div\");\n  div.setAttribute(\"class\", \"block_recipe\");\n  div.innerHTML = tab.outerHTML;\n  tbl.append(div);\n}\n\ncheckLogin();\n\nfunction checkLogin() {\n  if (localStorage.getItem('username')) {\n    document.querySelector(\".authorization_block\").style.display = \"none\";\n    document.querySelector(\".logIn_block\").style.display = \"flex\";\n    document.querySelector(\".navLogin_mobile\").style.display = \"block\";\n    document.querySelector(\".navNoLogin_mobile\").style.display = \"none\";\n    document.querySelector(\".navLogin\").style.display = \"block\";\n    document.querySelector(\".navNoLogin\").style.display = \"none\";\n    document.querySelector(\".loginUser\").textContent = localStorage.getItem('username');\n  } else {\n    document.querySelector(\".navLogin_mobile\").style.display = \"none\";\n    document.querySelector(\".navNoLogin_mobile\").style.display = \"block\";\n    document.querySelector(\".navLogin\").style.display = \"none\";\n    document.querySelector(\".navNoLogin\").style.display = \"block\";\n  }\n}\n\nfunction logOut() {\n  localStorage.removeItem('username');\n  localStorage.setItem('statusLogin', 'false');\n}\n\nfunction goLinkRecipe() {\n  var targetUser = this.event.target.parentNode.getElementsByClassName('titleRecipe')[0];\n  localStorage.setItem('titleRecipe', targetUser.textContent);\n}\n\nfunction addFavorite() {\n  var idRecipe = this.event.target.parentNode.parentNode.querySelectorAll('.id_recipe')[0].textContent;\n  var titleRecipe = this.event.target.parentNode.parentNode.parentNode.querySelectorAll('.titleRecipe')[0].textContent;\n  var newId;\n\n  for (var _i = 0; _i < dataUser.length; _i++) {\n    if (dataUser[_i].username === localStorage.getItem('username')) {\n      if (dataUser[_i].favorites) {\n        newId = dataUser[_i].favorites.length + 1;\n      }\n    }\n  }\n\n  var newFavorite = {\n    \"id\": idRecipe,\n    \"title\": titleRecipe\n  };\n\n  for (var _i2 = 0; _i2 < dataUser.length; _i2++) {\n    if (dataUser[_i2].username === localStorage.getItem('username')) {\n      if (dataUser[_i2].favorites) {\n        dataUser[_i2].favorites.push(newFavorite);\n      }\n\n      console.log(dataUser[_i2].favorites);\n    }\n  }\n\n  for (var _i3 = dataUser.length; _i3 > 0; _i3--) {\n    var requestUserDataClear = 'https://62489c3d20197bb4626b408f.mockapi.io/api/v1/usersData/' + dataUser[_i3 - 1].id;\n    var xhrD = new XMLHttpRequest();\n    xhrD.open(\"PUT\", requestUserDataClear);\n    xhrD.setRequestHeader(\"Content-Type\", \"application/json\");\n    xhrD.send(dataUser[_i3]); //xhrD.abort();\n  }\n\n  for (var _i4 = 0; _i4 < dataUser.length; _i4++) {\n    var json = void 0;\n\n    if (dataUser[_i4].favorites.length !== 0) {\n      json = {\n        name: dataUser[_i4].name,\n        username: dataUser[_i4].username,\n        lastName: dataUser[_i4].lastName,\n        email: dataUser[_i4].email,\n        password: dataUser[_i4].password,\n        id: dataUser[_i4].id,\n        favorites: dataUser[_i4].favorites\n      };\n    } else {\n      json = {\n        name: dataUser[_i4].name,\n        username: dataUser[_i4].username,\n        lastName: dataUser[_i4].lastName,\n        email: dataUser[_i4].email,\n        password: dataUser[_i4].password,\n        id: dataUser[_i4].id,\n        favorites: []\n      };\n    }\n\n    var _data = JSON.stringify(json);\n\n    var requestUserData = 'https://62489c3d20197bb4626b408f.mockapi.io/api/v1/usersData';\n    var xhrP = new XMLHttpRequest();\n    xhrP.open(\"POST\", requestUserData);\n    xhrP.setRequestHeader(\"Content-Type\", \"application/json\");\n    xhrP.send(_data);\n  }\n}\n\n//# sourceURL=webpack:///./assets/js/index.js?");
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	var __webpack_exports__ = {};
+/******/ 	__webpack_modules__["./assets/js/index.js"]();
+/******/ 	
+/******/ })()
+;
