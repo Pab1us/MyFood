@@ -63,8 +63,6 @@ app.post('/users', function(req, res) {
 });
 
 app.post('/recipes', function(req, res) {
-    console.log(req.body.id);
-    console.log(req.body.title);
     const id = req.body.id;
     const title = req.body.title;
     const tag = req.body.tag;
@@ -72,9 +70,9 @@ app.post('/recipes', function(req, res) {
     const user = req.body.user;
     const imageUrl = filedata.path;
     const text = req.body.text;
-    const id_ingredients = req.body.id_ingredients;
+    const ingredients = req.body.ingredients;
 
-    connection.query('INSERT INTO `Recipes`(`id`, `title`, `tag`, `time`, `user`, `imageUrl`, `text`, `id_ingredients`) VALUES ('+ connection.escape(id) +','+ connection.escape(title)+', '+ connection.escape(tag)+', '+ connection.escape(time)+', '+ connection.escape(user)+', '+ connection.escape(imageUrl)+', '+ connection.escape(text)+', '+  connection.escape(id_ingredients) +')', (error, result) => {
+    connection.query('INSERT INTO `Recipes`(`id`, `title`, `tag`, `time`, `user`, `imageUrl`, `text`, `ingredients`) VALUES ('+ connection.escape(id) +','+ connection.escape(title)+', '+ connection.escape(tag)+', '+ connection.escape(time)+', '+ connection.escape(user)+', '+ connection.escape(imageUrl)+', '+ connection.escape(text)+', '+  connection.escape(ingredients) +')', (error, result) => {
         if (error) {
             console.log(error);
             res.sendStatus(500);
@@ -88,16 +86,11 @@ app.post('/recipes', function(req, res) {
 });
 
 app.post('/ingredients', function(req, res) {
-    for (let i = 0; i< req.body.length; i++) {
-        console.log(req.body[i].id);
-        console.log(req.body[i].name);
-        console.log(req.body[i].quantity);
-        console.log(req.body[i]);
-        const id = req.body[i].id;
-        const name = req.body[i].name;
-        const quantity = req.body[i].quantity;
-        const type = req.body[i].type;
-        const id_recipe = req.body[i].id_recipe;
+        const id = req.body.id;
+        const name = req.body.name;
+        const quantity = req.body.quantity;
+        const type = req.body.type;
+        const id_recipe = req.body.id_recipe;
 
         connection.query('INSERT INTO `ingredients`(`id`, `name`, `quantity`, `type`, `id_recipe`) VALUES ('+ connection.escape(id) +','+ connection.escape(name)+', '+ connection.escape(quantity)+', '+ connection.escape(type)+', '+ connection.escape(id_recipe)+')', (error, result) => {
             if (error) {
@@ -110,8 +103,6 @@ app.post('/ingredients', function(req, res) {
                 res.send(result);
             }
         });
-
-    }
 });
 
 app.post('/favoritesDelete', function(req, res) {
@@ -191,4 +182,3 @@ app.post("/upload", function (req, res, next) {
 app.listen(3000);
 // отправляем сообщение
 console.log('Сервер стартовал!');
-

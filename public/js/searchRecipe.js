@@ -30,11 +30,12 @@ let arrayIngredients = [];
 console.log(data[0].title);
 //Построение первоначальной таблицы с изначальными данными
 for (let i = 0; i < dataIngredients.length; i++) {
-    arrayIngredients.push(dataIngredients[i].name);
+    arrayIngredients.push(dataIngredients[i].name.toLowerCase());
 }
 let arrayIngredientsFilter = arrayIngredients.filter((item, index) => {
     return arrayIngredients.indexOf(item) === index
 });
+
 
 console.log(arrayIngredientsFilter);
 
@@ -74,21 +75,26 @@ function btnSearch() {
         }
     }
 
-
-        for (let j = 0; j < dataIngredients.length; j++) {
-            let key = 0;
+    for (let i = 0; i < data.length; i++) {
+        let ingredientsRecipe = data[i].ingredients;
+        ingredientsRecipe = ingredientsRecipe.split(';');
+        let key = 0;
+        for (let j = 0; j < ingredientsRecipe.length; j++) {
             for (let k = 0; k < arrayIngredientsFilter.length - 1; k++) {
-                if(arrayIngredientsFilter[k] === dataIngredients[j].name) {
+                if(arrayIngredientsFilter[k].toLowerCase() === ingredientsRecipe[j].toLowerCase()) {
                     key++;
                     if(key === arrayIngredientsFilter.length - 1) {
                         key = 0;
-                        filterData.push(data[dataIngredients[j].id_recipe - 1]);
+                        filterData.push(data[i]);
+                        break;
                     }
 
                 }
             }
 
         }
+    }
+
 
     let tbl = document.querySelector(".recipes_blocks");
     let tab = document.querySelector(".block_recipe_test");

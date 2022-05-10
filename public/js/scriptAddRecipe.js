@@ -25,16 +25,8 @@ function btnCreateJson() {
     let id = dataRecipe.length + 1;
 
     if(inputTitle.value && inputTime.value && inputText.value && inputIngredients[0].value){
-        let json = {
-            id: id,
-            title: inputTitle.value,
-            tag: selectTag.value,
-            time: inputTime.value,
-            text: inputText.value,
-            imageUrl: imgUrl,
-            user: localStorage.getItem('username'),
-            id_ingredients: id
-        };
+
+        let arrayIngredients = inputIngredientsCollection();
         function inputIngredientsCollection() {
             let array = [];
 
@@ -51,6 +43,37 @@ function btnCreateJson() {
             console.log(array);
             return array;
         }
+        let requestIngredients = '/ingredients';
+
+        for (let i = 0; i< arrayIngredients.length; i++) {
+            const Ingredients = JSON.stringify(arrayIngredients[i]);
+            const xhrI = new XMLHttpRequest();
+            xhrI.open("POST", requestIngredients);
+            xhrI.setRequestHeader("Content-Type", "application/json");
+
+            xhrI.send(Ingredients);
+        }
+
+
+        let json = {
+            id: id,
+            title: inputTitle.value,
+            tag: selectTag.value,
+            time: inputTime.value,
+            text: inputText.value,
+            imageUrl: imgUrl,
+            user: localStorage.getItem('username'),
+            ingredients: inputIngredientsCollectionName()
+        };
+
+        function inputIngredientsCollectionName() {
+            let arrayNameIngredients = '';
+            for (let i = 0; i< arrayIngredients.length; i++) {
+                arrayNameIngredients += arrayIngredients[i].name + ";";
+            }
+            return arrayNameIngredients;
+        }
+
         // Запрос данных
         let request = '/recipes';
         const data = JSON.stringify(json);
@@ -64,18 +87,6 @@ function btnCreateJson() {
         btnCreate.style.backgroundColor = "green";
         btnCreate.style.pointerEvents = "none";
         btnCreate.style.opacity = "0.7";
-
-
-        let arrayIngredients = inputIngredientsCollection();
-        let requestIngredients = '/ingredients';
-        const Ingredients = JSON.stringify(arrayIngredients);
-        const xhrI = new XMLHttpRequest();
-
-        xhrI.open("POST", requestIngredients);
-        xhrI.setRequestHeader("Content-Type", "application/json");
-
-        xhrI.send(Ingredients);
-
 
     }
     else {

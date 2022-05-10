@@ -111,7 +111,15 @@ function addFavorite() {
         xhrP.setRequestHeader("Content-Type", "application/json");
 
         xhrP.send(data);
+         document.querySelector(".modalWindow").style.display = "block";
+    } else {
+        document.querySelector(".alertText").textContent = "Рецепт уже добавлен в избранное";
+        document.querySelector(".modalWindow").style.display = "block";
     }
 
 
+}
+
+function btnReload() {
+    window.location.href = "index.html";
 }
