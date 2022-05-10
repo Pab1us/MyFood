@@ -1,5 +1,6 @@
 // Запрос данных
 let request = httpGet('/recipes');
+let requestIngredients = httpGet('/ingredients');
 
 function httpGet(theUrl)
 {
@@ -10,11 +11,11 @@ function httpGet(theUrl)
 }
 // Здесь наши данные
 let data = JSON.parse(request);
-console.log(data);
+let dataIngredients = JSON.parse(requestIngredients);
 
+console.log(dataIngredients);
 
 let ingredientsBlock = document.querySelector(".ingredientsBlock");
-let tab = document.querySelector(".block_recipe_test");
 let titleRecipe = document.querySelector(".titleRecipe");
 let tag_type = document.querySelector(".tag_type");
 let timeRecipe = document.querySelector(".timeRecipe");
@@ -35,10 +36,12 @@ for (let i = 0; i < data.length; i++) {
         name_author.textContent = data[i].user;
         imgRecipe.src = data[i].imageUrl;
         textBlock.textContent = data[i].text;
-        let ingredientsData = data[i].ingredients;
-        for (let j = 0; j < ingredientsData.length; j++) {
-            create(ingredientsData[j].name);
+        for (let j = 0; j < dataIngredients.length; j++) {
+            if(dataIngredients[j].id_recipe === data[i].id) {
+                create(dataIngredients[j].name);
+            }
         }
+        break;
     }
 }
 

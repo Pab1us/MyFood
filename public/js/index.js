@@ -83,7 +83,7 @@ function goLinkRecipe() {
 
 function addFavorite() {
     let idRecipe = this.event.target.parentNode.parentNode.querySelectorAll('.id_recipe')[0].textContent;
-    let titleRecipe = this.event.target.parentNode.parentNode.parentNode.querySelectorAll('.titleRecipe')[0].textContent;
+    let titleRecipe = this.event.target.parentNode.parentNode.querySelectorAll('.titleRecipe')[0].textContent;
     let id_user;
 
     for (let i = 0; i < dataUser.length; i++) {
@@ -94,12 +94,15 @@ function addFavorite() {
     }
 
     let newFavorite = {
-        "id": idRecipe,
+        "id": Number(idRecipe),
         "title": titleRecipe,
         "id_user": id_user
     }
-    // if( !dataFavorites.includes(newFavorite))
-    // {
+
+    let findObj = dataFavorites.find(o => o.id === newFavorite.id && o.id_user === newFavorite.id_user);
+
+    if(!findObj)
+     {
         const data = JSON.stringify(newFavorite);
         let requestUserData = '/favorites';
 
@@ -108,7 +111,7 @@ function addFavorite() {
         xhrP.setRequestHeader("Content-Type", "application/json");
 
         xhrP.send(data);
-   // }
+    }
 
 
 }

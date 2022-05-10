@@ -70,11 +70,11 @@ app.post('/recipes', function(req, res) {
     const tag = req.body.tag;
     const time = req.body.time;
     const user = req.body.user;
-    const imageUrl = req.body.imageUrl;
+    const imageUrl = filedata.path;
     const text = req.body.text;
     const id_ingredients = req.body.id_ingredients;
 
-    connection.query('INSERT INTO `Recipes`(`id`, `title`, `tag`, `time`, `user`, `imageUrl`, `text`, `id_ingredients`) VALUES ('+ connection.escape(id) +','+ connection.escape(title)+', '+ connection.escape(tag)+', '+ connection.escape(time)+', '+ connection.escape(user)+', '+ connection.escape(filedata.path)+', '+ connection.escape(text)+', '+  connection.escape(id_ingredients) +')', (error, result) => {
+    connection.query('INSERT INTO `Recipes`(`id`, `title`, `tag`, `time`, `user`, `imageUrl`, `text`, `id_ingredients`) VALUES ('+ connection.escape(id) +','+ connection.escape(title)+', '+ connection.escape(tag)+', '+ connection.escape(time)+', '+ connection.escape(user)+', '+ connection.escape(imageUrl)+', '+ connection.escape(text)+', '+  connection.escape(id_ingredients) +')', (error, result) => {
         if (error) {
             console.log(error);
             res.sendStatus(500);
@@ -85,6 +85,33 @@ app.post('/recipes', function(req, res) {
             res.send(result);
         }
     });
+});
+
+app.post('/ingredients', function(req, res) {
+    for (let i = 0; i< req.body.length; i++) {
+        console.log(req.body[i].id);
+        console.log(req.body[i].name);
+        console.log(req.body[i].quantity);
+        console.log(req.body[i]);
+        const id = req.body[i].id;
+        const name = req.body[i].name;
+        const quantity = req.body[i].quantity;
+        const type = req.body[i].type;
+        const id_recipe = req.body[i].id_recipe;
+
+        connection.query('INSERT INTO `ingredients`(`id`, `name`, `quantity`, `type`, `id_recipe`) VALUES ('+ connection.escape(id) +','+ connection.escape(name)+', '+ connection.escape(quantity)+', '+ connection.escape(type)+', '+ connection.escape(id_recipe)+')', (error, result) => {
+            if (error) {
+                console.log(error);
+                res.sendStatus(500);
+                return;
+            }
+            else {
+                console.log(result);
+                res.send(result);
+            }
+        });
+
+    }
 });
 
 app.post('/favoritesDelete', function(req, res) {

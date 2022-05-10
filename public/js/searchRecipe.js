@@ -1,5 +1,6 @@
 // Запрос данных
 let request = httpGet('/recipes');
+let requestIngredients = httpGet('/ingredients');
 
 function httpGet(theUrl)
 {
@@ -10,6 +11,7 @@ function httpGet(theUrl)
 }
 // Здесь наши данные
 let data = JSON.parse(request);
+let dataIngredients = JSON.parse(requestIngredients);
 console.log(data);
 
 
@@ -27,11 +29,8 @@ let index;
 let arrayIngredients = [];
 console.log(data[0].title);
 //Построение первоначальной таблицы с изначальными данными
-for (let i = 0; i < data.length; i++) {
-        let ingredientsData = data[i].ingredients;
-        for (let j = 0; j < ingredientsData.length; j++) {
-            arrayIngredients.push(ingredientsData[j].name);
-        }
+for (let i = 0; i < dataIngredients.length; i++) {
+    arrayIngredients.push(dataIngredients[i].name);
 }
 let arrayIngredientsFilter = arrayIngredients.filter((item, index) => {
     return arrayIngredients.indexOf(item) === index
@@ -61,7 +60,6 @@ function selectIngredient() {
 
 function btnSearch() {
     let valueTextField =  document.querySelector(".inputIngredients").value;
-    //valueTextField = valueTextField.replace(/\s+/g, '');
     let mas = valueTextField.split(';')
     let filterData = [];
     filterData.length = 0;
@@ -76,23 +74,21 @@ function btnSearch() {
         }
     }
 
-    for (let i = 0; i < data.length; i++) {
-        let ingredientsData = data[i].ingredients;
-        let key = 0;
-        for (let j = 0; j < ingredientsData.length; j++) {
+
+        for (let j = 0; j < dataIngredients.length; j++) {
+            let key = 0;
             for (let k = 0; k < arrayIngredientsFilter.length - 1; k++) {
-                if(arrayIngredientsFilter[k] === ingredientsData[j].name) {
+                if(arrayIngredientsFilter[k] === dataIngredients[j].name) {
                     key++;
                     if(key === arrayIngredientsFilter.length - 1) {
                         key = 0;
-                        console.log(data[i]);
-                        filterData.push(data[i]);
+                        filterData.push(data[dataIngredients[j].id_recipe - 1]);
                     }
 
                 }
             }
+
         }
-    }
 
     let tbl = document.querySelector(".recipes_blocks");
     let tab = document.querySelector(".block_recipe_test");

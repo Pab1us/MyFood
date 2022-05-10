@@ -97,7 +97,13 @@
           <div class="nameText">Ингредиенты</div>
           <input type="text" class="inputIngredients" required/>
           <input type="text" style="width: 40px;" class="inputQuantity" required/>
-          <div style="margin-left: 20px;" class="nameText">шт</div>
+          <select size="1" class="typeQuantity" style="margin-left: 20px;">
+            <option>шт</option>
+            <option>ложек</option>
+            <option>литров</option>
+            <option>мл</option>
+            <option>грамм</option>
+          </select>
         </div>
       </div>
       <button onclick="addIngredient()" class="btnAddIngredient">Добавить ингредиент</button>
