@@ -1,16 +1,13 @@
-// import express from 'express';
-// import mysql from "mysql4";
-// import multer from 'multer';
 
 const express = require('express');
 const mysql = require('mysql4');
 const multer = require('multer');
 
 const connection = mysql.createConnection({
-    host: "sql4.freesqldatabase.com",
-    user: "sql4490204",
-    database: "sql4490204",
-    password: "v37677qN7I"
+    host: "sql4.freemysqlhosting.net",
+    user: "sql4491903",
+    database: "sql4491903",
+    password: "SjsMH4f6YF"
 });
 
 
@@ -72,7 +69,7 @@ app.post('/recipes', function(req, res) {
     const text = req.body.text;
     const ingredients = req.body.ingredients;
 
-    connection.query('INSERT INTO `Recipes`(`id`, `title`, `tag`, `time`, `user`, `imageUrl`, `text`, `ingredients`) VALUES ('+ connection.escape(id) +','+ connection.escape(title)+', '+ connection.escape(tag)+', '+ connection.escape(time)+', '+ connection.escape(user)+', '+ connection.escape(imageUrl)+', '+ connection.escape(text)+', '+  connection.escape(ingredients) +')', (error, result) => {
+    connection.query('INSERT INTO `recipes`(`id`, `title`, `tag`, `time`, `user`, `imageUrl`, `text`, `ingredients`) VALUES ('+ connection.escape(id) +','+ connection.escape(title)+', '+ connection.escape(tag)+', '+ connection.escape(time)+', '+ connection.escape(user)+', '+ connection.escape(imageUrl)+', '+ connection.escape(text)+', '+  connection.escape(ingredients) +')', (error, result) => {
         if (error) {
             console.log(error);
             res.sendStatus(500);
@@ -139,7 +136,7 @@ app.get('/favorites', (request, response) => {
 });
 
 app.get('/recipes', (request, response) => {
-    connection.query('SELECT * FROM Recipes', (error, result) => {
+    connection.query('SELECT * FROM recipes', (error, result) => {
         if (error) throw error;
 
         response.send(result);
@@ -155,7 +152,7 @@ app.get('/ingredients', (request, response) => {
 });
 
 
-//app.use(express.static('/public'));
+
 app.use(express.static(__dirname));
 let storage = multer.diskStorage({
     destination: function(req, file, cb) {

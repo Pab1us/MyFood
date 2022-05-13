@@ -38,7 +38,7 @@ for (let i = 0; i < data.length; i++) {
         textBlock.textContent = data[i].text;
         for (let j = 0; j < dataIngredients.length; j++) {
             if(dataIngredients[j].id_recipe === data[i].id) {
-                create(dataIngredients[j].name);
+                create(dataIngredients[j].name, dataIngredients[j].quantity, dataIngredients[j].type);
             }
         }
         break;
@@ -46,10 +46,10 @@ for (let i = 0; i < data.length; i++) {
 }
 
 // Создание и заполнение ячеек
-function create(ingredient) {
+function create(ingredient, quantity, type) {
     let div = document.createElement("div");
     div.setAttribute("class", "block_recipe")
-    div.textContent = ingredient + " ";
+    div.textContent = ingredient + ": " + quantity + " " + type;
     ingredientsBlock.append(div);
 }
 
